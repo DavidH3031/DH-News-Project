@@ -10,7 +10,6 @@ function SingleArticle() {
 
   useEffect(() => {
     getArticleById(article_id).then((article) => {
-      console.log(article);
       setCurrentArticle(article);
 
       setLoading(false);
@@ -37,6 +36,8 @@ function SingleArticle() {
         </section>
       </div>
     );
+  } else {
+    return <h2>Loading...</h2>;
   }
 }
 
