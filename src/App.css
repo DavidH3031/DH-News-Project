@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+body {
+  background-color: #f0f0f0;
+}
+
 /* ------------ Home page -------------- */
 .page--header {
   text-align: left;
@@ -9,23 +13,33 @@
   margin: 0;
   padding-left: 2%;
   text-transform: uppercase;
+  background-color: #6d778e;
+  color: white;
 }
 
 .navbar {
   position: relative;
   border: 2px solid black;
-  border-radius: 6px;
+  /* border-radius: 6px; */
+  background-color: #6d778e;
+  color: white;
 }
 
 .navbar--links {
   display: flex;
   gap: 1%;
   margin: 0;
+  padding-left: 1%;
+}
+
+.home-link {
+  text-decoration: none;
 }
 
 .navbar--links-button {
   margin: 6px;
   cursor: pointer;
+  color: white;
 }
 
 .login--button {
@@ -33,6 +47,11 @@
   top: 1%;
   right: 1%;
 }
+
+.article--list-item-header {
+  text-decoration: underline;
+}
+
 .article--list-box {
   display: flex;
   flex-direction: column;
@@ -54,6 +73,10 @@
   padding-left: 1%;
   cursor: pointer;
   border-radius: 6px;
+  background-color: white;
+}
+.article--item:hover {
+  background-color: rgb(216, 216, 216);
 }
 
 @media only screen and (max-width: 420px) {
@@ -75,6 +98,7 @@
   margin: auto;
   margin-top: 2%;
   border-radius: 6px;
+  background-color: white;
 }
 .article-header {
   width: 95%;
@@ -85,6 +109,7 @@
 
 .article-header-text {
   margin-bottom: 2px;
+  text-decoration: underline;
 }
 
 .article-author {
@@ -128,6 +153,7 @@
   margin: auto;
   margin-top: 20px;
   border-radius: 6px;
+  background-color: white;
 }
 
 .comments-list {
