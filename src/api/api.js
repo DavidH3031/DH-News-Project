@@ -13,3 +13,8 @@ export const getArticleById = async (id) => {
   const res = await newsApi.get(`/articles/${id}`);
   return res.data.article;
 };
+
+export const getCommentsById = async (id) => {
+  const res = await newsApi.get(`/articles/${id}/comments`);
+  return res.data.comments;
+};

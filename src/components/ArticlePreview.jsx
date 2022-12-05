@@ -1,5 +1,3 @@
-import React from "react";
-
 function ArticlePreview({ article }) {
   return (
     <div className="article--item">
