@@ -6,6 +6,10 @@ const newsApi = axios.create({
 
 export const getArticles = async () => {
   const res = await newsApi.get("/articles");
-  console.log(res.data.articles[0]);
   return res.data.articles;
+};
+
+export const getArticleById = async (id) => {
+  const res = await newsApi.get(`/articles/${id}`);
+  return res.data.article;
 };

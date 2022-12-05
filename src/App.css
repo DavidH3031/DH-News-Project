@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+/* ------------ Home page -------------- */
 .page--header {
   text-align: left;
   padding: 1%;
@@ -13,6 +14,7 @@
 .navbar {
   position: relative;
   border: 2px solid black;
+  border-radius: 6px;
 }
 
 .navbar--links {
@@ -48,6 +50,7 @@
   border: 1px black solid;
   text-align: left;
   padding-left: 1%;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 420px) {
@@ -58,4 +61,57 @@
     display: flex;
     flex-direction: column;
   }
+}
+
+/* ----------- Single Article Page ------------ */
+
+.article-box {
+  border: 2px grey solid;
+  padding-bottom: 2%;
+  max-width: 97%;
+  margin: auto;
+  margin-top: 2%;
+}
+.article-header {
+  width: 95%;
+  margin: auto;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.article-header-text {
+  margin-bottom: 2px;
+}
+
+.article-author {
+  font-weight: 700;
+  margin: 0;
+}
+
+.article-topic {
+  font-weight: 700;
+  margin: 0;
+}
+
+.article-created-at {
+  font-weight: 700;
+  margin: 0;
+}
+
+.article-comment-count {
+  font-weight: 700;
+  margin: 0;
+}
+
+.article-body {
+  border: 2px black solid;
+  box-shadow: 0px 0px 16px 4px black;
+  max-width: 95%;
+  margin: auto;
+  margin-top: 2%;
+}
+
+.article-body-text {
+  max-width: fit-content;
+  padding: 20px;
 }

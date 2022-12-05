@@ -1,6 +1,6 @@
 import React from "react";
 
-function Article({ article }) {
+function ArticlePreview({ article }) {
   return (
     <div className="article--item">
       <h2 className="article--list-item-header">{article.title}</h2>
@@ -14,4 +14,4 @@ function Article({ article }) {
   );
 }
 
-export default Article;
+export default ArticlePreview;
