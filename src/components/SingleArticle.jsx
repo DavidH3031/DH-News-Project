@@ -97,7 +97,9 @@ function SingleArticle() {
           </section>
         </div>
         <section className="comments-list-section">
-          <h2>Comments</h2>
+          <u>
+            <h2>Comments</h2>
+          </u>
           <Comments />
         </section>
       </main>

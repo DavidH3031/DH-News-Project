@@ -28,3 +28,13 @@ export const updateVotes = async (id, increment) => {
     return error.response.status;
   }
 };
+
+export const postComment = async (id, username, body) => {
+  try {
+    const sendBody = { username, body };
+    const res = await newsApi.post(`/articles/${id}/comments`, sendBody);
+    return res.data.comment;
+  } catch (error) {
+    return error.response.status;
+  }
+};
