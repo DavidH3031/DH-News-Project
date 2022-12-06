@@ -11,6 +11,7 @@ function Comments() {
   const [validComment, setValidComment] = useState(true);
   const [err, setErr] = useState(null);
   const { user, userStatus } = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
 
   function handleSubmit() {
     if (!userStatus) {
@@ -50,54 +51,60 @@ function Comments() {
   }
 
   useEffect(() => {
+    setLoading(true);
     getCommentsById(article_id).then((comments) => {
       setCommentsList(comments);
+      setLoading(false);
     });
   }, [article_id]);
 
-  return (
-    <div className="comments-list-box">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (newComment) {
-            handleSubmit();
-          } else {
-            setValidComment(false);
-          }
-        }}
-        className="comment-form"
-        action="input"
-      >
-        <input
-          placeholder="Enter your comment here..."
-          className={validComment ? "comment-input" : "invalid-comment-input"}
-          type="text"
-          value={newComment}
-          onChange={(e) => {
-            setNewComment(e.target.value);
+  if (!loading) {
+    return (
+      <div className="comments-list-box">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (newComment) {
+              handleSubmit();
+            } else {
+              setValidComment(false);
+            }
           }}
-        />
-        <button className="comment-button" type="submit">
-          <span>Submit</span>
-        </button>
-      </form>
-      <ul className="comments-list">
-        {commentsList.map((comment) => {
-          const dateTime = getTimeStr(comment.created_at);
-          return (
-            <li key={comment.comment_id} className="comment-item">
-              <p className="comment-author">{comment.author}</p>
-              <p className="comment-body">{comment.body}</p>
-              <p className="comment-creation">
-                Created: {dateTime[0]} at {dateTime[1]}
-              </p>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
+          className="comment-form"
+          action="input"
+        >
+          <textarea
+            placeholder="Enter your comment here..."
+            className={validComment ? "comment-input" : "invalid-comment-input"}
+            type="input"
+            value={newComment}
+            onChange={(e) => {
+              setNewComment(e.target.value);
+            }}
+          />
+          <button className="comment-button" type="submit">
+            <span>Submit</span>
+          </button>
+        </form>
+        <ul className="comments-list">
+          {commentsList.map((comment) => {
+            const dateTime = getTimeStr(comment.created_at);
+            return (
+              <li key={comment.comment_id} className="comment-item">
+                <p className="comment-author">{comment.author}</p>
+                <p className="comment-body">{comment.body}</p>
+                <p className="comment-creation">
+                  Created: {dateTime[0]} at {dateTime[1]}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  } else {
+    return <h2>Loading...</h2>;
+  }
 }
 
 export default Comments;
