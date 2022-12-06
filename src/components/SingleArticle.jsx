@@ -29,7 +29,7 @@ function SingleArticle() {
         return currVotes + 1;
       });
     } else {
-      updateVotes(article_id, 1).then((res) => {
+      updateVotes(article_id, -1).then((res) => {
         if (res === 400) {
           setErr("Something went wrong! Please try again.");
           setVotes((currVotes) => {
@@ -76,12 +76,14 @@ function SingleArticle() {
               <button
                 className="voting-buttons"
                 onClick={!clicked ? handleClick : null}
+                disabled={clicked}
               >
                 👍
               </button>
               <button
                 className="voting-buttons"
                 onClick={!clicked ? handleClick : null}
+                disabled={clicked}
               >
                 👎
               </button>
