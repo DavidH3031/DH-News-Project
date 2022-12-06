@@ -18,3 +18,13 @@ export const getCommentsById = async (id) => {
   const res = await newsApi.get(`/articles/${id}/comments`);
   return res.data.comments;
 };
+
+export const updateVotes = async (id, increment) => {
+  const body = { inc_votes: increment };
+  try {
+    const res = await newsApi.patch(`/articles/${id}`, body);
+    return res.data.article;
+  } catch (error) {
+    return error.response.status;
+  }
+};

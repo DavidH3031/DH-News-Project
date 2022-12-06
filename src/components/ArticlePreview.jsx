@@ -6,6 +6,7 @@ function ArticlePreview({ article }) {
   return (
     <div className="article--item">
       <h2 className="article--list-item-header">{article.title}</h2>
+      <h4 className="votes-preview">Upvotes: {article.votes}</h4>
       <section className="article-preview-body">
         <p className="article--list-item-author">
           Created by: <b>{article.author}</b> on
