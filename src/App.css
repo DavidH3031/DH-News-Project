@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: #f0f0f0;
+  background-color: #dfdfdf;
 }
 
 /* ------------ Home page -------------- */
@@ -15,6 +15,8 @@ body {
   text-transform: uppercase;
   background-color: #6d778e;
   color: white;
+  border: 2px solid black;
+  border-bottom-style: none;
 }
 
 .article-preview-body {
@@ -66,6 +68,7 @@ body {
 .article--list-item-header {
   text-decoration: underline;
   margin-bottom: 2px;
+  width: 80%;
 }
 
 .article--list-box {
@@ -90,6 +93,7 @@ body {
   cursor: pointer;
   border-radius: 6px;
   background-color: white;
+  position: relative;
 }
 .article--item:hover {
   background-color: rgb(216, 216, 216);
@@ -108,6 +112,14 @@ body {
   }
 }
 
+.votes-preview {
+  position: absolute;
+  top: 1px;
+  right: 10px;
+  padding: 1px;
+  display: block;
+}
+
 /* ----------- Single Article Page ------------ */
 
 .article-box {
@@ -118,6 +130,7 @@ body {
   margin-top: 2%;
   border-radius: 6px;
   background-color: white;
+  position: relative;
 }
 .article-header {
   width: 95%;
@@ -129,6 +142,7 @@ body {
 .article-header-text {
   margin-bottom: 2px;
   text-decoration: underline;
+  width: 80%;
 }
 
 .article-author {
@@ -153,7 +167,7 @@ body {
 
 .article-body {
   border: 2px black solid;
-  box-shadow: 0px 0px 16px 4px black;
+  box-shadow: 0px 0px 16px 1px black;
   max-width: 95%;
   margin: auto;
   margin-top: 2%;
@@ -165,6 +179,33 @@ body {
   padding: 20px;
 }
 
+.voting-buttons-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.voting-buttons {
+  font-size: 24px;
+  border: none;
+  box-shadow: 0px 0px 3px 0.5px rgb(87, 87, 87);
+  background-color: white;
+}
+
+.upvotes {
+  position: absolute;
+  top: 25px;
+  right: 10px;
+}
+
+.error-msg {
+  position: absolute;
+  top: 45px;
+  right: 10px;
+  color: red;
+}
 /* ----------- Comments List ------------ */
 .comments-list-section {
   border: 2px solid black;
