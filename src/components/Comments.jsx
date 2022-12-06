@@ -8,7 +8,6 @@ function Comments() {
   const [commentsList, setCommentsList] = useState([]);
   useEffect(() => {
     getCommentsById(article_id).then((comments) => {
-      console.log(comments);
       setCommentsList(comments);
     });
   }, [article_id]);
