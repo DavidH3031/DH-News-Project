@@ -48,6 +48,7 @@ function SingleArticle() {
   }
 
   useEffect(() => {
+    setLoading(true);
     getArticleById(article_id).then((article) => {
       setCurrentArticle(article);
       setLoading(false);
