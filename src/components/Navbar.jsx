@@ -24,10 +24,10 @@ function Navbar() {
           Login
         </button>
       ) : (
-        <seciton className="user-info">
+        <section className="user-info">
           <img className="avatar" src={user.avatar_url} alt="avatar_url"></img>
           <p className="user-loggedin">Logged in as: {user.username}</p>
-        </seciton>
+        </section>
       )}
     </div>
   );

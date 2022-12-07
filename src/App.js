@@ -8,13 +8,16 @@ import { UserContext } from "./contexts/userContext";
 import { useEffect, useState } from "react";
 import Topics from "./components/Topics";
 import InvalidTopic from "./components/InvalidTopic";
-import { getTopics } from "./api/api";
+import { getArticles, getTopics } from "./api/api";
+import InvalidArticle from "./components/InvalidArticle";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [userStatus, setUserStatus] = useState(false);
   const [currentTopic, setCurrentTopic] = useState();
   const [validTopics, setValidTopics] = useState([]);
+  const [validArticles, setValidArticles] = useState([]);
+  const [currentArticle, setCurrentArticle] = useState();
 
   useEffect(() => {
     getTopics().then((topics) => {
@@ -22,8 +25,14 @@ function App() {
         return topic.slug;
       });
       setValidTopics(valid);
-      setLoading(false);
     });
+    getArticles().then((articles) => {
+      const valid = articles.map((article) => {
+        return article.article_id;
+      });
+      setValidArticles(valid);
+    });
+    setLoading(false);
   }, []);
 
   const [user, setUser] = useState({
@@ -53,7 +62,16 @@ function App() {
                 )
               }
             />
-            <Route path="/article/:article_id" element={<SingleArticle />} />
+            <Route
+              path="/article/:article_id"
+              element={
+                validArticles.includes(currentArticle) ? (
+                  <SingleArticle />
+                ) : (
+                  <InvalidArticle setCurrentArticle={setCurrentArticle} />
+                )
+              }
+            />
           </Routes>
         </div>
       </UserContext.Provider>
