@@ -6,6 +6,7 @@ import ArticleList from "./components/ArticleList";
 import SingleArticle from "./components/SingleArticle";
 import { UserContext } from "./contexts/userContext";
 import { useState } from "react";
+import Topics from "./components/Topics";
 
 function App() {
   const [userStatus, setUserStatus] = useState(false);
@@ -24,6 +25,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<ArticleList />} />
+          <Route path="/topics" element={<Topics />} />
+          <Route path="/topics/:topic_slug" element={<ArticleList />} />
           <Route path="/article/:article_id" element={<SingleArticle />} />
         </Routes>
       </div>

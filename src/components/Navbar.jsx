@@ -15,14 +15,19 @@ function Navbar() {
         <Link className="home-link" to="/">
           <h2 className="navbar--links-button">Home</h2>
         </Link>
-        <h2 className="navbar--links-button">Topics</h2>
+        <Link className="home-link" to="/topics">
+          <h2 className="navbar--links-button">Topics</h2>
+        </Link>
       </section>
       {!userStatus ? (
         <button onClick={handleLogin} className="login--button">
           Login
         </button>
       ) : (
-        <p className="user-loggedin">Logged in as: {user.username}</p>
+        <seciton className="user-info">
+          <img className="avatar" src={user.avatar_url} alt="avatar_url"></img>
+          <p className="user-loggedin">Logged in as: {user.username}</p>
+        </seciton>
       )}
     </div>
   );
