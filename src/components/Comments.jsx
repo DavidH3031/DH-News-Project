@@ -8,6 +8,7 @@ function Comments() {
   const { article_id } = useParams();
   const [commentsList, setCommentsList] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [postedComments, setPostedComments] = useState(0);
   const [validComment, setValidComment] = useState(true);
   const [deletedComment, setDeletedComment] = useState({});
   const [err, setErr] = useState(null);
@@ -45,30 +46,14 @@ function Comments() {
     postComment(article_id, user.username, newComment).then((res) => {
       if (res === 400) {
         setErr("Something went wrong! Please try again.");
-        setCommentsList((currComments) => {
-          const newComments = [...currComments];
-          newComments.shift();
-          setNewComment(err);
-          return newComments;
-        });
+        setNewComment(err);
       } else {
         setErr(null);
+        setPostedComments((curr) => {
+          return curr + 1;
+        });
+        setNewComment("");
       }
-    });
-
-    setCommentsList((currComments) => {
-      const newComments = [...currComments];
-      const date = new Date();
-      const commentObj = {
-        comment_id: Date.now(),
-        votes: 0,
-        created_at: date.toISOString(),
-        author: user.username,
-        body: newComment,
-      };
-      newComments.unshift(commentObj);
-      setNewComment("");
-      return newComments;
     });
   }
 
@@ -78,7 +63,7 @@ function Comments() {
       setCommentsList(comments);
       setLoading(false);
     });
-  }, [article_id]);
+  }, [article_id, postedComments]);
 
   if (!loading) {
     return (
@@ -113,14 +98,17 @@ function Comments() {
             const dateTime = getTimeStr(comment.created_at);
             return (
               <li key={comment.comment_id} className="comment-item">
-                <p className="comment-author">{comment.author}</p>
-                <button
-                  onClick={() => {
-                    handleDelete(index, comment.comment_id);
-                  }}
-                >
-                  x
-                </button>
+                <section className="header-del">
+                  <p className="comment-author">{comment.author}</p>
+                  <button
+                    className="delete-button"
+                    onClick={() => {
+                      handleDelete(index, comment.comment_id);
+                    }}
+                  >
+                    x
+                  </button>
+                </section>
                 {delErr ? <p>{delErr}</p> : ""}
                 <p className="comment-body">{comment.body}</p>
                 <p className="comment-creation">

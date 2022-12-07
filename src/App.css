@@ -288,6 +288,7 @@ body {
   padding-left: 1%;
   padding-bottom: 1%;
   border-radius: 6px;
+  position: relative;
 }
 
 .comment-author {
@@ -296,6 +297,7 @@ body {
   font-size: 24px;
   font-weight: 700;
   text-decoration: underline;
+  max-width: fit-content;
 }
 
 .comment-body {
@@ -307,6 +309,17 @@ body {
   padding: 0;
   margin: 1px;
   color: rgb(39, 39, 39);
+}
+
+.delete-button {
+  position: relative;
+  top: 5px;
+  right: 10px;
+}
+
+.header-del {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* ------- input form -------- */
