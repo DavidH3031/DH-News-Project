@@ -5,11 +5,7 @@ const newsApi = axios.create({
 });
 
 export const getArticles = async (topic_slug) => {
-  let path = "/articles";
-  if (topic_slug) {
-    path += "?topic=" + topic_slug;
-  }
-  const res = await newsApi.get(path);
+  const res = await newsApi.get("/articles", { params: { topic: topic_slug } });
   return res.data.articles;
 };
 
