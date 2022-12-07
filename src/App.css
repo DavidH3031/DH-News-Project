@@ -40,6 +40,8 @@ body {
   border: 2px solid black;
   background-color: #6d778e;
   color: white;
+  justify-content: space-between;
+  display: flex;
 }
 
 .navbar--links {
@@ -70,11 +72,21 @@ body {
   border: none;
   cursor: pointer;
 }
+.user-info {
+  display: flex;
+  height: 100%;
+  justify-content: flex-end;
+  width: 30%;
+  flex-direction: row;
+  float: right;
+}
 
-.user-loggedin {
-  position: absolute;
-  top: 1px;
-  right: 1%;
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin-top: 7px;
+  margin-right: 3px;
 }
 
 .login--button:hover {
@@ -325,4 +337,37 @@ body {
   .comment-button::after {
     content: "+";
   }
+}
+
+/* ---------- topic list ------------- */
+
+.topic-list {
+  display: flex;
+  gap: 2%;
+  list-style: none;
+  justify-content: center;
+}
+
+.topic-list-item {
+  width: 30%;
+  height: 15rem;
+  border: 2px solid black;
+  margin: auto;
+  background-color: white;
+  cursor: pointer;
+}
+
+.topic-list-item:hover {
+  background-color: #9dacce;
+}
+
+.topic-name {
+  position: relative;
+  top: 30%;
+  text-transform: uppercase;
+}
+
+.topic-description {
+  position: relative;
+  top: 32%;
 }

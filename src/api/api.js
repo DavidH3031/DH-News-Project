@@ -4,9 +4,14 @@ const newsApi = axios.create({
   baseURL: "https://dh-ncnews.cyclic.app/api",
 });
 
-export const getArticles = async () => {
-  const res = await newsApi.get("/articles");
+export const getArticles = async (topic_slug) => {
+  const res = await newsApi.get("/articles", { params: { topic: topic_slug } });
   return res.data.articles;
+};
+
+export const getTopics = async () => {
+  const res = await newsApi.get("/topics");
+  return res.data.topics;
 };
 
 export const getArticleById = async (id) => {
