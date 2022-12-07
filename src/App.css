@@ -35,6 +35,25 @@ body {
   text-transform: capitalize;
 }
 
+.sort-by {
+  display: flex;
+  gap: 4px;
+  margin-top: 1%;
+  margin-right: 2%;
+  align-items: flex-end;
+}
+.sort-by-text {
+  margin: 0px;
+}
+
+.sorting-buttons {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
 .navbar {
   position: relative;
   border: 2px solid black;
