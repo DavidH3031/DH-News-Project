@@ -12,7 +12,6 @@ function ArticleList() {
   const [ascOrDesc, setascOrDesc] = useState("desc");
 
   function handleSort(e) {
-    console.log(e.target.innerText);
     switch (e.target.innerText) {
       case "Date":
         setSort("created_at");
@@ -23,8 +22,11 @@ function ArticleList() {
       case "Upvotes":
         setSort("votes");
         return;
-      case "Newest or Oldest":
-        ascOrDesc === "desc" ? setascOrDesc("asc") : setascOrDesc("desc");
+      case "Ascending":
+        setascOrDesc("desc");
+        return;
+      case "Descending":
+        setascOrDesc("asc");
         return;
       default:
         break;
@@ -72,7 +74,7 @@ function ArticleList() {
             id="asc-desc"
             onClick={handleSort}
           >
-            Newest or Oldest
+            {ascOrDesc === "asc" ? "Ascending" : "Descending"}
           </button>
         </section>
         <ul className="article--list">
