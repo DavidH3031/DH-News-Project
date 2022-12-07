@@ -45,3 +45,12 @@ export const postComment = async (id, username, body) => {
     return error.response.status;
   }
 };
+
+export const deleteComment = async (id) => {
+  try {
+    await newsApi.delete(`/comments/${id}`);
+    return;
+  } catch (error) {
+    return error.response.status;
+  }
+};
