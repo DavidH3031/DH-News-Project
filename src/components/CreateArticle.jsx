@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { postArticle } from "../api/api";
 import { UserContext } from "../contexts/userContext";
 
-function CreateArticle({ setPostedArticle }) {
+function CreateArticle() {
   const { user, userStatus } = useContext(UserContext);
   const navigate = useNavigate();
   const [title, setTitle] = useState();

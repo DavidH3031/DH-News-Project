@@ -12,7 +12,6 @@ function ArticleList({ validTopics }) {
   const [loading, setLoading] = useState(true);
   const [sort, setSort] = useState();
   const [ascOrDesc, setascOrDesc] = useState("desc");
-  const [postedArticle, setPostedArticle] = useState(0);
 
   function handleSort(e) {
     switch (e.target.innerText) {
@@ -51,7 +50,7 @@ function ArticleList({ validTopics }) {
     if (!topic_slug || validTopics.includes(topic_slug)) {
       return (
         <main className="homepage">
-          <CreateArticle setPostedArticle={setPostedArticle} />
+          <CreateArticle />
           <div className="article--list-box">
             <section className="sort-by">
               <h3 className="sort-by-text">Sort by:</h3>
