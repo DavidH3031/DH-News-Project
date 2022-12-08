@@ -1,9 +1,6 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function InvalidArticle({ setCurrentArticle }) {
-  const { article_id } = useParams();
-  setCurrentArticle(+article_id);
-
+function InvalidArticle() {
   return (
     <div>
       <h1>No article with that ID!</h1>
