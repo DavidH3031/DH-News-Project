@@ -7,7 +7,7 @@ body {
 }
 
 /* ------------ Home page -------------- */
-.page--header {
+.header {
   text-align: left;
   padding: 1%;
   margin: 0;
@@ -17,6 +17,22 @@ body {
   color: white;
   border: 2px solid black;
   border-bottom-style: none;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.page--header {
+  font-size: 48px;
+  margin: 0;
+}
+
+.logo-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  background-color: white;
+  padding: 0px;
 }
 
 .article-preview-body {
@@ -288,6 +304,7 @@ body {
   padding-left: 1%;
   padding-bottom: 1%;
   border-radius: 6px;
+  position: relative;
 }
 
 .comment-author {
@@ -296,6 +313,7 @@ body {
   font-size: 24px;
   font-weight: 700;
   text-decoration: underline;
+  max-width: fit-content;
 }
 
 .comment-body {
@@ -307,6 +325,17 @@ body {
   padding: 0;
   margin: 1px;
   color: rgb(39, 39, 39);
+}
+
+.delete-button {
+  position: relative;
+  top: 5px;
+  right: 10px;
+}
+
+.header-del {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* ------- input form -------- */

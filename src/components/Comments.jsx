@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getCommentsById, postComment } from "../api/api";
+import { deleteComment, getCommentsById, postComment } from "../api/api";
 import { UserContext } from "../contexts/userContext";
 import { getTimeStr } from "../utils/getTimeStr";
 
@@ -8,10 +8,33 @@ function Comments() {
   const { article_id } = useParams();
   const [commentsList, setCommentsList] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [postedComments, setPostedComments] = useState(0);
   const [validComment, setValidComment] = useState(true);
+  const [deletedComment, setDeletedComment] = useState({});
   const [err, setErr] = useState(null);
+  const [delErr, setDelErr] = useState(null);
   const { user, userStatus } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
+
+  function handleDelete(index, id) {
+    setCommentsList((currComments) => {
+      const newComments = [...currComments];
+      const oldComment = newComments.splice(index, 1);
+      setDeletedComment(oldComment);
+      return newComments;
+    });
+
+    deleteComment(id).then((res) => {
+      if (res) {
+        setDelErr("Something went wrong! Please try again.");
+        setCommentsList((currComments) => {
+          const newComments = [...currComments];
+          newComments.splice(index, 0, deletedComment);
+          return newComments;
+        });
+      }
+    });
+  }
 
   function handleSubmit() {
     if (!userStatus) {
@@ -23,30 +46,14 @@ function Comments() {
     postComment(article_id, user.username, newComment).then((res) => {
       if (res === 400) {
         setErr("Something went wrong! Please try again.");
-        setCommentsList((currComments) => {
-          const newComments = [...currComments];
-          newComments.shift();
-          setNewComment(err);
-          return newComments;
-        });
+        setNewComment(err);
       } else {
         setErr(null);
+        setPostedComments((curr) => {
+          return curr + 1;
+        });
+        setNewComment("");
       }
-    });
-
-    setCommentsList((currComments) => {
-      const newComments = [...currComments];
-      const date = new Date();
-      const commentObj = {
-        comment_id: Date.now(),
-        votes: 0,
-        created_at: date.toISOString(),
-        author: user.username,
-        body: newComment,
-      };
-      newComments.unshift(commentObj);
-      setNewComment("");
-      return newComments;
     });
   }
 
@@ -56,7 +63,7 @@ function Comments() {
       setCommentsList(comments);
       setLoading(false);
     });
-  }, [article_id]);
+  }, [article_id, postedComments]);
 
   if (!loading) {
     return (
@@ -87,11 +94,22 @@ function Comments() {
           </button>
         </form>
         <ul className="comments-list">
-          {commentsList.map((comment) => {
+          {commentsList.map((comment, index) => {
             const dateTime = getTimeStr(comment.created_at);
             return (
               <li key={comment.comment_id} className="comment-item">
-                <p className="comment-author">{comment.author}</p>
+                <section className="header-del">
+                  <p className="comment-author">{comment.author}</p>
+                  <button
+                    className="delete-button"
+                    onClick={() => {
+                      handleDelete(index, comment.comment_id);
+                    }}
+                  >
+                    x
+                  </button>
+                </section>
+                {delErr ? <p>{delErr}</p> : ""}
                 <p className="comment-body">{comment.body}</p>
                 <p className="comment-creation">
                   Created: {dateTime[0]} at {dateTime[1]}

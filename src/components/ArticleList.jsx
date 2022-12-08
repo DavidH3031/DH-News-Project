@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../api/api";
 import ArticlePreview from "./ArticlePreview";
 import { useNavigate, useParams } from "react-router-dom";
+import InvalidTopic from "./InvalidTopic";
 
-function ArticleList() {
+function ArticleList({ validTopics }) {
   const [articles, setArticles] = useState([]);
   const { topic_slug } = useParams();
   const navigate = useNavigate();
@@ -43,60 +44,67 @@ function ArticleList() {
   function handleArticleClick(id) {
     navigate(`/article/${id}`);
   }
+
   if (!loading) {
-    return (
-      <div className="article--list-box">
-        <section className="sort-by">
-          <h3 className="sort-by-text">Sort by:</h3>
-          <button
-            className="sorting-buttons"
-            onClick={handleSort}
-            disabled={sort === "created_at"}
-          >
-            Date
-          </button>
-          <button
-            className="sorting-buttons"
-            onClick={handleSort}
-            disabled={sort === "comment_count"}
-          >
-            Comment count
-          </button>
-          <button
-            className="sorting-buttons"
-            onClick={handleSort}
-            disabled={sort === "votes"}
-          >
-            Upvotes
-          </button>
-          <button
-            className="sorting-buttons"
-            id="asc-desc"
-            onClick={handleSort}
-          >
-            {ascOrDesc === "asc" ? "Ascending" : "Descending"}
-          </button>
-        </section>
-        <ul className="article--list">
-          {articles.map((article) => {
-            return (
-              <li
-                onClick={() => {
-                  handleArticleClick(article.article_id);
-                }}
-                className="article--list-item"
-                key={article.article_id}
+    if (!topic_slug || validTopics.includes(topic_slug)) {
+      return (
+        <main className="homepage">
+          <div className="article--list-box">
+            <section className="sort-by">
+              <h3 className="sort-by-text">Sort by:</h3>
+              <button
+                className="sorting-buttons"
+                onClick={handleSort}
+                disabled={sort === "created_at"}
               >
-                <ArticlePreview article={article} />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  } else {
-    return <h2>Loading...</h2>;
+                Date
+              </button>
+              <button
+                className="sorting-buttons"
+                onClick={handleSort}
+                disabled={sort === "comment_count"}
+              >
+                Comment count
+              </button>
+              <button
+                className="sorting-buttons"
+                onClick={handleSort}
+                disabled={sort === "votes"}
+              >
+                Upvotes
+              </button>
+              <button
+                className="sorting-buttons"
+                id="asc-desc"
+                onClick={handleSort}
+              >
+                {ascOrDesc === "asc" ? "Ascending" : "Descending"}
+              </button>
+            </section>
+            <ul className="article--list">
+              {articles.map((article) => {
+                return (
+                  <li
+                    onClick={() => {
+                      handleArticleClick(article.article_id);
+                    }}
+                    className="article--list-item"
+                    key={article.article_id}
+                  >
+                    <ArticlePreview article={article} />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </main>
+      );
+    } else if (!validTopics.includes(topic_slug)) {
+      console.log("invalidddddd");
+      return <InvalidTopic />;
+    } else {
+      return <h2>Loading...</h2>;
+    }
   }
 }
-
 export default ArticleList;
