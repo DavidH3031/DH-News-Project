@@ -1,13 +1,9 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Topics from "./Topics";
 
 function InvalidTopic({ setCurrentTopic }) {
   const { topic_slug } = useParams();
-
-  useEffect(() => {
-    setCurrentTopic(topic_slug);
-  }, [setCurrentTopic, topic_slug]);
+  setCurrentTopic(topic_slug);
 
   return (
     <div>

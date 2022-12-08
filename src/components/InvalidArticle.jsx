@@ -1,12 +1,9 @@
-import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 function InvalidArticle({ setCurrentArticle }) {
   const { article_id } = useParams();
+  setCurrentArticle(+article_id);
 
-  useEffect(() => {
-    setCurrentArticle(+article_id);
-  }, [setCurrentArticle, article_id]);
   return (
     <div>
       <h1>No article with that ID!</h1>
