@@ -8,6 +8,7 @@ import { UserContext } from "./contexts/userContext";
 import { useEffect, useState } from "react";
 import Topics from "./components/Topics";
 import { getArticles, getTopics } from "./api/api";
+import NewArticlePage from "./components/NewArticlePage";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -50,6 +51,7 @@ function App() {
               path="/"
               element={<ArticleList validTopics={validTopics} />}
             />
+            <Route path="/create" element={<NewArticlePage />} />
             <Route path="/topics" element={<Topics />} />
             <Route
               path="/topics/:topic_slug"

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const newsApi = axios.create({
-  baseURL: "https://dh-ncnews.cyclic.app/api",
+  baseURL: "https://newsapi-qkxs.onrender.com/api",
 });
 
 export const getArticles = async (topic_slug, sort, ascOrDesc) => {
@@ -50,6 +50,16 @@ export const deleteComment = async (id) => {
   try {
     await newsApi.delete(`/comments/${id}`);
     return;
+  } catch (error) {
+    return error.response.status;
+  }
+};
+
+export const postArticle = async (author, title, body, topic) => {
+  try {
+    const sendBody = { author, title, body, topic };
+    const res = await newsApi.post(`/articles`, sendBody);
+    return res.data.article;
   } catch (error) {
     return error.response.status;
   }

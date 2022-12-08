@@ -18,6 +18,9 @@ function Navbar() {
         <Link className="home-link" to="/topics">
           <h2 className="navbar--links-button">Topics</h2>
         </Link>
+        <Link className="home-link" id="new-article" to="/create">
+          <h2 className="navbar--links-button-new">New Article</h2>
+        </Link>
       </section>
       {!userStatus ? (
         <button onClick={handleLogin} className="login--button">
