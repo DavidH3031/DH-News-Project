@@ -1,22 +1,36 @@
 import { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { postArticle } from "../api/api";
 import { UserContext } from "../contexts/userContext";
 
-function CreateArticle() {
+function CreateArticle({ setPostedArticle }) {
   const { user, userStatus } = useContext(UserContext);
+  const navigate = useNavigate();
   const [title, setTitle] = useState();
   const [topic, setTopic] = useState();
   const [body, setBody] = useState();
+  const { pathname } = useLocation();
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!userStatus) {
+      alert("You must be logged into create an article!");
+      return;
+    }
     postArticle(user.username, title, body, topic.toLowerCase()).then((res) => {
-      console.log(res);
+      if (res.article_id) {
+        setTitle("");
+        setTopic("");
+        setBody("");
+        navigate(`/article/${res.article_id}`);
+      }
     });
   }
 
   return (
-    <div className="create-article">
+    <div
+      className={pathname === "/" ? "create-article" : "create-article-page"}
+    >
       <h2 className="create-header">Create Article</h2>
       <form className="create-article-form" onSubmit={handleSubmit}>
         <section className="title-section">
@@ -24,6 +38,7 @@ function CreateArticle() {
             Title
           </label>
           <input
+            className="title-input"
             type="text"
             name="create-article-header"
             placeholder="Title..."
@@ -38,6 +53,7 @@ function CreateArticle() {
             Topic
           </label>
           <input
+            className="topic-input"
             type="text"
             name="create-article-topic"
             placeholder="Topic..."
@@ -52,6 +68,7 @@ function CreateArticle() {
             Body
           </label>
           <textarea
+            className="body-input"
             type="input"
             name="create-article-body"
             placeholder="Write your article here..."
@@ -61,7 +78,7 @@ function CreateArticle() {
             }}
           />
         </section>
-        <button>Submit</button>
+        <button className="create-article-button">Submit</button>
       </form>
     </div>
   );

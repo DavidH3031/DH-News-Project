@@ -96,6 +96,17 @@ body {
   text-decoration: none;
 }
 
+#new-article {
+  width: 160px;
+}
+
+.navbar--links-button-new {
+  margin: 6px;
+  cursor: pointer;
+  color: white;
+  display: block;
+}
+
 .navbar--links-button {
   margin: 6px;
   cursor: pointer;
@@ -170,13 +181,14 @@ body {
   background-color: rgb(216, 216, 216);
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 720px) {
   .article--list-item-header {
     font-size: 14px;
   }
   .article--list-box {
     display: flex;
     flex-direction: column;
+    width: 99%;
   }
   .article--list {
     width: 95%;
@@ -436,10 +448,13 @@ body {
   margin-top: 3.5%;
   border-radius: 6px;
   justify-content: center;
-  position: absolute;
-  top: 1%;
+  position: fixed;
+  top: 18%;
   left: 1%;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .create-article-form {
@@ -447,6 +462,8 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 5px;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 .create-header {
@@ -464,6 +481,13 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 5px;
+  width: 100%;
+}
+
+.title-input {
+  width: 85%;
+  border-radius: 6px;
+  font-size: 24px;
 }
 
 .topic-section {
@@ -471,6 +495,13 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 5px;
+  width: 100%;
+}
+
+.topic-input {
+  width: 85%;
+  border-radius: 6px;
+  font-size: 24px;
 }
 
 .body-section {
@@ -479,4 +510,42 @@ body {
   align-items: center;
   gap: 5px;
   margin-bottom: 3%;
+  width: 100%;
+}
+
+.body-input {
+  width: 85%;
+  border-radius: 6px;
+  font-size: 14px;
+  height: 400px;
+}
+
+@media only screen and (max-width: 720px) {
+  .create-article {
+    display: none;
+  }
+}
+
+/* --------- new-article-page ---------- */
+.new-article-page {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.create-article-page {
+  border: 2px solid black;
+  margin-top: 20px;
+  border-radius: 6px;
+  background-color: white;
+  width: 80%;
+}
+
+.create-article-button {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: rgb(196, 196, 196);
+  border: 1px solid black;
+  cursor: pointer;
+  width: 40%;
 }
