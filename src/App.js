@@ -49,9 +49,17 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<ArticleList validTopics={validTopics} />}
+              element={
+                <ArticleList
+                  validTopics={validTopics}
+                  setValidTopics={setValidTopics}
+                />
+              }
             />
-            <Route path="/create" element={<NewArticlePage />} />
+            <Route
+              path="/create"
+              element={<NewArticlePage validTopics={validTopics} />}
+            />
             <Route path="/topics" element={<Topics />} />
             <Route
               path="/topics/:topic_slug"

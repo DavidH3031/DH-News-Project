@@ -64,3 +64,15 @@ export const postArticle = async (author, title, body, topic) => {
     return error.response.status;
   }
 };
+
+export const postTopic = async (slug, description) => {
+  try {
+    const name = slug.toLowerCase();
+    const sendBody = { slug: name, description };
+    const res = await newsApi.post(`/topics`, sendBody);
+    return res.data.topic;
+  } catch (error) {
+    console.log(error);
+    return error.response.status;
+  }
+};
