@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import InvalidTopic from "./InvalidTopic";
 import CreateArticle from "./CreateArticle";
 
-function ArticleList({ validTopics }) {
+function ArticleList({ validTopics, setValidTopics }) {
   const [articles, setArticles] = useState([]);
   const { topic_slug } = useParams();
   const navigate = useNavigate();
@@ -50,7 +50,10 @@ function ArticleList({ validTopics }) {
     if (!topic_slug || validTopics.includes(topic_slug)) {
       return (
         <main className="homepage">
-          <CreateArticle />
+          <CreateArticle
+            validTopics={validTopics}
+            setValidTopics={setValidTopics}
+          />
           <div className="article--list-box">
             <section className="sort-by">
               <h3 className="sort-by-text">Sort by:</h3>

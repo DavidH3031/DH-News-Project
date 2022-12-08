@@ -1,15 +1,33 @@
 import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postArticle } from "../api/api";
+import { postArticle, postTopic } from "../api/api";
 import { UserContext } from "../contexts/userContext";
 
-function CreateArticle() {
+function CreateArticle({ validTopics, setValidTopics }) {
   const { user, userStatus } = useContext(UserContext);
   const navigate = useNavigate();
-  const [title, setTitle] = useState();
-  const [topic, setTopic] = useState();
-  const [body, setBody] = useState();
+  const [title, setTitle] = useState("");
+  const [topic, setTopic] = useState("");
+  const [topicDesc, setTopicDesc] = useState("");
+  const [body, setBody] = useState("");
+  const [newTopic, setNewTopic] = useState(false);
   const { pathname } = useLocation();
+
+  function postNewArticle() {
+    postArticle(user.username, title, body, topic.toLowerCase()).then((res) => {
+      if (res.article_id) {
+        navigate(`/article/${res.article_id}`);
+      }
+    });
+  }
+
+  function handleBlur(e) {
+    if (!validTopics.includes(topic)) {
+      setNewTopic(true);
+    } else {
+      setNewTopic(false);
+    }
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,14 +35,20 @@ function CreateArticle() {
       alert("You must be logged into create an article!");
       return;
     }
-    postArticle(user.username, title, body, topic.toLowerCase()).then((res) => {
-      if (res.article_id) {
-        setTitle("");
-        setTopic("");
-        setBody("");
-        navigate(`/article/${res.article_id}`);
-      }
-    });
+    if (newTopic) {
+      postTopic(topic, topicDesc).then((res) => {
+        if (res.slug === topic.toLowerCase()) {
+          console.log(topic, " created");
+          setValidTopics((curr) => {
+            const newTopics = [...curr, res.slug];
+            return newTopics;
+          });
+          postNewArticle();
+        }
+      });
+    } else {
+      postNewArticle();
+    }
   }
 
   return (
@@ -61,8 +85,33 @@ function CreateArticle() {
             onChange={(e) => {
               setTopic(e.target.value);
             }}
+            onBlur={(e) => {
+              handleBlur(e);
+            }}
           />
         </section>
+        {newTopic ? (
+          <section className="topic-desc-section">
+            <label
+              className="new-article-header"
+              htmlFor="create-article-topic"
+            >
+              Topic Description
+            </label>
+            <input
+              className="topic-input"
+              type="text"
+              name="create-article-topic"
+              placeholder="Topic..."
+              value={topicDesc}
+              onChange={(e) => {
+                setTopicDesc(e.target.value);
+              }}
+            />
+          </section>
+        ) : (
+          ""
+        )}
         <section className="body-section">
           <label className="new-article-header" htmlFor="create-article-body">
             Body
