@@ -12,6 +12,7 @@ function SingleArticle({ validArticles }) {
   const [votes, setVotes] = useState();
   const [clicked, setClicked] = useState(false);
   const [err, setErr] = useState(null);
+  const [exists, setExists] = useState(true);
 
   function handleClick(e) {
     if (e.target.innerText === "👍") {
@@ -50,19 +51,20 @@ function SingleArticle({ validArticles }) {
 
   useEffect(() => {
     setLoading(true);
-    if (!validArticles.includes(+article_id)) {
-      setLoading(false);
-      return;
-    }
-    getArticleById(article_id).then((article) => {
-      setCurrentArticle(article);
-      setLoading(false);
-      setVotes(article.votes);
-    });
-  }, [article_id, validArticles]);
+    getArticleById(article_id)
+      .then((article) => {
+        setCurrentArticle(article);
+        setLoading(false);
+        setVotes(article.votes);
+      })
+      .catch((err) => {
+        setExists(false);
+        setLoading(false);
+      });
+  }, [article_id]);
 
   if (!loading) {
-    if (validArticles.includes(+article_id)) {
+    if (exists) {
       const dateTime = getTimeStr(currentArticle.created_at);
       return (
         <main>
