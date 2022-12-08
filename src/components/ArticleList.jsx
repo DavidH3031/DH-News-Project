@@ -3,6 +3,7 @@ import { getArticles } from "../api/api";
 import ArticlePreview from "./ArticlePreview";
 import { useNavigate, useParams } from "react-router-dom";
 import InvalidTopic from "./InvalidTopic";
+import CreateArticle from "./CreateArticle";
 
 function ArticleList({ validTopics }) {
   const [articles, setArticles] = useState([]);
@@ -49,6 +50,7 @@ function ArticleList({ validTopics }) {
     if (!topic_slug || validTopics.includes(topic_slug)) {
       return (
         <main className="homepage">
+          <CreateArticle />
           <div className="article--list-box">
             <section className="sort-by">
               <h3 className="sort-by-text">Sort by:</h3>
@@ -100,7 +102,6 @@ function ArticleList({ validTopics }) {
         </main>
       );
     } else if (!validTopics.includes(topic_slug)) {
-      console.log("invalidddddd");
       return <InvalidTopic />;
     } else {
       return <h2>Loading...</h2>;

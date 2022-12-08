@@ -54,3 +54,15 @@ export const deleteComment = async (id) => {
     return error.response.status;
   }
 };
+
+export const postArticle = async (author, title, body, topic) => {
+  try {
+    const sendBody = { author, title, body, topic };
+    console.log(sendBody);
+    const res = await newsApi.post(`/articles`, sendBody);
+    console.log(res.data);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

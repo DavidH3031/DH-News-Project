@@ -6,6 +6,12 @@ body {
   background-color: #dfdfdf;
 }
 
+.homepage {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* ------------ Home page -------------- */
 .header {
   text-align: left;
@@ -140,6 +146,7 @@ body {
   flex-direction: column;
   align-items: flex-end;
   flex-wrap: nowrap;
+  width: 70%;
 }
 .article--list {
   list-style: none;
@@ -147,7 +154,7 @@ body {
   grid-row: auto;
   row-gap: 10px;
   padding-right: 2%;
-  width: 70%;
+  width: 100%;
 }
 
 .article--item {
@@ -418,4 +425,58 @@ body {
 .topic-description {
   position: relative;
   top: 32%;
+}
+
+/* --------- create article ------------- */
+
+.create-article {
+  border: 1px black solid;
+  width: 25%;
+  margin-left: 20px;
+  margin-top: 3.5%;
+  border-radius: 6px;
+  justify-content: center;
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  background-color: white;
+}
+
+.create-article-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.create-header {
+  text-decoration: underline;
+}
+
+.new-article-header {
+  text-decoration: underline;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.title-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.topic-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.body-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 3%;
 }
