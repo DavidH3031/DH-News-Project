@@ -130,6 +130,18 @@ body {
   border: none;
   cursor: pointer;
 }
+
+.signup--button {
+  position: absolute;
+  top: 15%;
+  right: 5.5%;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #6495ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 .user-info {
   display: flex;
   height: 100%;
@@ -310,6 +322,10 @@ body {
   margin-top: 20px;
   border-radius: 6px;
   background-color: white;
+}
+
+.no-delete-button {
+  display: none;
 }
 
 .comments-list {
@@ -505,6 +521,12 @@ body {
 }
 
 .topic-input {
+  width: 85%;
+  border-radius: 6px;
+  font-size: 24px;
+}
+
+.avatar-input {
   width: 85%;
   border-radius: 6px;
   font-size: 24px;

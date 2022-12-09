@@ -101,7 +101,11 @@ function Comments() {
                 <section className="header-del">
                   <p className="comment-author">{comment.author}</p>
                   <button
-                    className="delete-button"
+                    className={
+                      user.username === comment.author
+                        ? "delete-button"
+                        : "no-delete-button"
+                    }
                     onClick={() => {
                       handleDelete(index, comment.comment_id);
                     }}

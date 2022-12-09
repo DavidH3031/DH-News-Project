@@ -10,6 +10,7 @@ import Topics from "./components/Topics";
 import { getArticles, getTopics } from "./api/api";
 import NewArticlePage from "./components/NewArticlePage";
 import LoginPage from "./components/LoginPage";
+import Signup from "./components/Signup";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -66,6 +67,7 @@ function App() {
               element={<SingleArticle validArticles={validArticles} />}
             />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<Signup />} />
           </Routes>
         </div>
       </UserContext.Provider>

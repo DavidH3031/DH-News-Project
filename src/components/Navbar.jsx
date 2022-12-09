@@ -6,6 +6,10 @@ function Navbar() {
   const { user, userStatus } = useContext(UserContext);
   const navigate = useNavigate();
 
+  function handleSignup() {
+    navigate("/signup");
+  }
+
   function handleLogin() {
     navigate("/login");
   }
@@ -24,9 +28,14 @@ function Navbar() {
         </Link>
       </section>
       {!userStatus ? (
-        <button onClick={handleLogin} className="login--button">
-          Login
-        </button>
+        <section>
+          <button onClick={handleLogin} className="login--button">
+            Login
+          </button>
+          <button onClick={handleSignup} className="signup--button">
+            Signup
+          </button>
+        </section>
       ) : (
         <section className="user-info">
           <img className="avatar" src={user.avatar_url} alt="avatar_url"></img>
