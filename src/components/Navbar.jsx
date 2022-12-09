@@ -1,12 +1,14 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/userContext";
 
 function Navbar() {
   const { user, userStatus, setUserStatus } = useContext(UserContext);
+  const navigate = useNavigate();
 
   function handleLogin() {
-    setUserStatus(true);
+    // setUserStatus(true);
+    navigate("/login");
   }
 
   return (
