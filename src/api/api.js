@@ -84,3 +84,13 @@ export const getUsers = async () => {
     return error;
   }
 };
+
+export const createUser = async ({ username, name, avatar_url }) => {
+  try {
+    const body = { username, name, avatar_url };
+    const res = await newsApi.post("/users", body);
+    return res.data.newUser;
+  } catch (error) {
+    return error;
+  }
+};
