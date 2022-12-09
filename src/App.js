@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Topics from "./components/Topics";
 import { getArticles, getTopics } from "./api/api";
 import NewArticlePage from "./components/NewArticlePage";
+import LoginPage from "./components/LoginPage";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -32,12 +33,7 @@ function App() {
     setLoading(false);
   }, []);
 
-  const [user, setUser] = useState({
-    username: "cooljmessy",
-    name: "Peter Messy",
-    avatar_url:
-      "https://vignette.wikia.nocookie.net/mrmen/images/1/1a/MR_MESSY_4A.jpg/revision/latest/scale-to-width-down/250?cb=20170730171002",
-  });
+  const [user, setUser] = useState({});
   if (!loading) {
     return (
       <UserContext.Provider
@@ -69,6 +65,7 @@ function App() {
               path="/article/:article_id"
               element={<SingleArticle validArticles={validArticles} />}
             />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </div>
       </UserContext.Provider>

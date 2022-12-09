@@ -107,6 +107,12 @@ body {
   display: block;
 }
 
+@media only screen and (max-width: 480px) {
+  .user-loggedin {
+    display: none;
+  }
+}
+
 .navbar--links-button {
   margin: 6px;
   cursor: pointer;
@@ -548,4 +554,41 @@ body {
   border: 1px solid black;
   cursor: pointer;
   width: 40%;
+}
+
+/* ------- login page ------------- */
+
+.login-page {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  list-style: none;
+  padding: 3%;
+  max-width: 90%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-card {
+  border: 2px black solid;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 400px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.user-avatar {
+  max-width: 200px;
+  max-height: 200px;
 }

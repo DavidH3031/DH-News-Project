@@ -6,7 +6,7 @@ const newsApi = axios.create({
 
 export const getArticles = async (topic_slug, sort, ascOrDesc) => {
   const res = await newsApi.get("/articles", {
-    params: { topic: topic_slug, sort_by: sort, order: ascOrDesc },
+    params: { topic: topic_slug, sort_by: sort, order: ascOrDesc, limit: 1000 },
   });
   return res.data.articles;
 };
@@ -73,5 +73,14 @@ export const postTopic = async (slug, description) => {
     return res.data.topic;
   } catch (error) {
     return error.response.status;
+  }
+};
+
+export const getUsers = async () => {
+  try {
+    const res = await newsApi.get("/users/");
+    return res.data.users;
+  } catch (error) {
+    return error;
   }
 };
