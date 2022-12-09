@@ -38,7 +38,6 @@ function CreateArticle({ validTopics, setValidTopics }) {
     if (newTopic) {
       postTopic(topic, topicDesc).then((res) => {
         if (res.slug === topic.toLowerCase()) {
-          console.log(topic, " created");
           setValidTopics((curr) => {
             const newTopics = [...curr, res.slug];
             return newTopics;
@@ -53,7 +52,9 @@ function CreateArticle({ validTopics, setValidTopics }) {
 
   return (
     <div
-      className={pathname === "/" ? "create-article" : "create-article-page"}
+      className={
+        pathname === "/create" ? "create-article-page" : "create-article"
+      }
     >
       <h2 className="create-header">Create Article</h2>
       <form className="create-article-form" onSubmit={handleSubmit}>
