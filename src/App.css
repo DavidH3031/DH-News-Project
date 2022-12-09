@@ -107,6 +107,12 @@ body {
   display: block;
 }
 
+@media only screen and (max-width: 480px) {
+  .user-loggedin {
+    display: none;
+  }
+}
+
 .navbar--links-button {
   margin: 6px;
   cursor: pointer;
@@ -579,6 +585,7 @@ body {
   background-color: white;
   align-items: center;
   justify-content: center;
+  border-radius: 6px;
 }
 
 .user-avatar {

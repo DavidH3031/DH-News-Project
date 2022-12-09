@@ -81,7 +81,6 @@ export const getUsers = async () => {
     const res = await newsApi.get("/users/");
     return res.data.users;
   } catch (error) {
-    console.log(error);
     return error;
   }
 };

@@ -1,13 +1,17 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getUsers } from "../api/api";
 import { UserContext } from "../contexts/userContext";
 
 function LoginPage() {
   const [userList, setUserList] = useState([]);
-  const { user, setUser, userStatus, setUserStatus } = useContext(UserContext);
+  const navigate = useNavigate();
+  const { setUser, setUserStatus } = useContext(UserContext);
 
-  function handleClick(e) {
-    console.log(e);
+  function handleClick(fetchedUser) {
+    setUser(fetchedUser);
+    setUserStatus(true);
+    navigate("/");
   }
 
   useEffect(() => {
@@ -19,17 +23,22 @@ function LoginPage() {
   return (
     <div className="login-page">
       <ul className="user-list">
-        {userList.map((user) => {
+        {userList.map((fetchedUser) => {
           return (
-            <li className="user-card">
+            <li key={fetchedUser.username} className="user-card">
               <img
                 className="user-avatar"
-                src={user.avatar_url}
+                src={fetchedUser.avatar_url}
                 alt="user avatar"
               />
-              <h3 className="username">{user.username}</h3>
-              <h4 className="Real Name">{user.name}</h4>
-              <button onClick={handleClick} className="login-button-user">
+              <h3 className="username">{fetchedUser.username}</h3>
+              <h4 className="Real Name">{fetchedUser.name}</h4>
+              <button
+                onClick={() => {
+                  handleClick(fetchedUser);
+                }}
+                className="login-button-user"
+              >
                 Login
               </button>
             </li>
