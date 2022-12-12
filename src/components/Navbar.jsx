@@ -28,7 +28,7 @@ function Navbar() {
         </Link>
       </section>
       {!userStatus ? (
-        <section>
+        <section className="user-controls">
           <button onClick={handleLogin} className="login--button">
             Login
           </button>

@@ -18,7 +18,7 @@ function ArticleList({ validTopics, setValidTopics }) {
       case "Date":
         setSort("created_at");
         return;
-      case "Comment count":
+      case "Comments":
         setSort("comment_count");
         return;
       case "Upvotes":
@@ -69,7 +69,7 @@ function ArticleList({ validTopics, setValidTopics }) {
                 onClick={handleSort}
                 disabled={sort === "comment_count"}
               >
-                Comment count
+                Comments
               </button>
               <button
                 className="sorting-buttons"
